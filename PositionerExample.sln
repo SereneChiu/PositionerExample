@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PositionerExample_ToolbarLib", "PositionerExample_ToolbarLib\PositionerExample_ToolbarLib.csproj", "{8E901012-149E-464F-A42D-0A317FC8E724}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PositionerExample_ToolbarApp", "PositionerExample_ToolbarApp\PositionerExample_ToolbarApp.csproj", "{B4732ED9-A5F5-4E5E-B299-6C2D764D1FEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E901012-149E-464F-A42D-0A317FC8E724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E901012-149E-464F-A42D-0A317FC8E724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E901012-149E-464F-A42D-0A317FC8E724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E901012-149E-464F-A42D-0A317FC8E724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4732ED9-A5F5-4E5E-B299-6C2D764D1FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4732ED9-A5F5-4E5E-B299-6C2D764D1FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4732ED9-A5F5-4E5E-B299-6C2D764D1FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4732ED9-A5F5-4E5E-B299-6C2D764D1FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {618D653B-243E-4C75-966A-DF6D14A50094}
+	EndGlobalSection
+EndGlobal
