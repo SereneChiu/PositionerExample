@@ -8,9 +8,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Page Remove="ViewStyle\BorderStyle.xaml" />
+    <Page Remove="ViewStyle\ButtonStyle.xaml" />
+    <Page Remove="ViewStyle\ComboBoxStyle.xaml" />
+    <Page Remove="ViewStyle\LabelStyle.xaml" />
+    <Page Remove="ViewStyle\RadioButtonStyle.xaml" />
+    <Page Remove="ViewStyle\TextBoxStyle.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="TMcraft">
       <HintPath>..\TMcraft\TMcraft.dll</HintPath>
+      <Private>True</Private>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ViewStyle\BorderStyle.xaml" />
+    <Resource Include="ViewStyle\ButtonStyle.xaml" />
+    <Resource Include="ViewStyle\ComboBoxStyle.xaml" />
+    <Resource Include="ViewStyle\LabelStyle.xaml" />
+    <Resource Include="ViewStyle\RadioButtonStyle.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ViewStyle\TextBoxStyle.xaml" />
   </ItemGroup>
 
 </Project>

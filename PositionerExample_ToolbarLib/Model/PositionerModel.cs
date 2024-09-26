@@ -1,4 +1,5 @@
-﻿using PositionerExample_ToolbarLib.ViewModel;
+﻿using PositionerExample_ToolbarLib.Control;
+using PositionerExample_ToolbarLib.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,6 +15,10 @@ namespace PositionerExample_ToolbarLib.Model
     public class PositionerModel : ViewModelBase
     {
         private string _state = EnumExtensions.ToDisplayName(PositionerDefine.State.NORMAL);
+        private string _selectedDistance = "";
+        private string _selectedSpeed = "";
+
+
         private CollectionView _distanceEntries;
         private CollectionView _speedEntries;
         private double _pos_j7 = 0.0;
@@ -60,6 +65,18 @@ namespace PositionerExample_ToolbarLib.Model
             set => Set(ref _state, value, nameof(State));
         }
 
+        public string SelectedDistance
+        {
+            get => _selectedDistance;
+            set => Set(ref _selectedDistance, value, nameof(SelectedDistance));
+        }
+
+        public string SelectSpeed
+        {
+            get => _selectedSpeed;
+            set => Set(ref _selectedSpeed, value, nameof(SelectSpeed));
+        }
+
         private IList<ComboboxType> mDisEntries = new List<ComboboxType>()
         {
             new ComboboxType("0.01 mm")
@@ -93,11 +110,17 @@ namespace PositionerExample_ToolbarLib.Model
             ButtonClickCommand = new RelayCommand(ClickedMethod);
             _distanceEntries = new CollectionView(mDisEntries);
             _speedEntries = new CollectionView(mSpeedEntries);
+            _selectedDistance = mDisEntries[7].TypeName;
+            _selectedSpeed = mSpeedEntries[1].TypeName;
         }
 
 
         private void ClickedMethod(object obj)
         {
+            if (!(obj is string))
+            {
+                return;
+            }
         }
 
 
