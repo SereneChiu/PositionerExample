@@ -7,7 +7,7 @@
              xmlns:view="clr-namespace:PositionerExample_ToolbarLib.View"
              xmlns:model="clr-namespace:PositionerExample_ToolbarLib.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="400">
+             d:DesignHeight="600" d:DesignWidth="500">
     <UserControl.DataContext>
         <model:ToolbarViewModel />
     </UserControl.DataContext>

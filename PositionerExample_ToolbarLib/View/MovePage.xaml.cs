@@ -24,5 +24,20 @@ namespace PositionerExample_ToolbarLib.View
         {
             InitializeComponent();
         }
+
+        private void rad_sync_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chb_j7_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chb_j8_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

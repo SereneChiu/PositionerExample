@@ -4,25 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PositionerExample_ToolbarLib.View"
+             xmlns:model="clr-namespace:PositionerExample_ToolbarLib.Model"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="400">
+             d:DesignHeight="600" d:DesignWidth="500">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/PositionerExample_ToolbarLib;component/ViewStyle/ButtonStyle.xaml" />
                 <ResourceDictionary Source="/PositionerExample_ToolbarLib;component/ViewStyle/BorderStyle.xaml"/>
                 <ResourceDictionary Source="/PositionerExample_ToolbarLib;component/ViewStyle/LabelStyle.xaml"/>
+                <ResourceDictionary Source="/PositionerExample_ToolbarLib;component/ViewStyle/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="/PositionerExample_ToolbarLib;component/ViewStyle/TextBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <model:PositionerModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="36"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -35,6 +42,43 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="Positioner State:" Style="{DynamicResource LabelStyle}"/>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Positioner State:" Style="{DynamicResource LabelStyle}"/>
+        <Button Grid.Row="0" Grid.Column="3" Name="btn_light" Width ="30" Height="30" Style="{DynamicResource RoundedButtonStyle}"  
+                Background="{Binding StateInColor}"/>
+        <Label Grid.Row="0" Grid.Column="4" Content="{Binding State}" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle}" Grid.ColumnSpan="2"/>
+        <Button Grid.Row="0" Grid.Column="6" Content="Fault Reset" Width="120" Height="30" HorizontalAlignment="Left" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Content="Move Type:" Style="{DynamicResource LabelStyle}"/>
+        <RadioButton Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Name="rad_sync" Margin="15, 0, 0, 0" Content="Synchronous" GroupName="rad_move_type" FontSize="20" FontFamily="Noto Sans" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Center" Click="rad_sync_Click"/>
+        <RadioButton Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Name="rad_single" Content="Single" GroupName="rad_move_type" FontSize="20" FontFamily="Noto Sans" IsChecked="False" HorizontalAlignment="Left" VerticalAlignment="Center" Click="rad_sync_Click"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Content="Jog Distance:" Style="{DynamicResource LabelStyle}"/>
+        <ComboBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" Margin="15, 0, 0, 0" ItemsSource="{Binding Path=DistanceEntries}"
+          DisplayMemberPath="TypeName"
+          SelectedValuePath="TypeName" Style="{DynamicResource ComboBoxStyle}" />
+      
+        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Content="Speed:" Style="{DynamicResource LabelStyle}"/>
+        <ComboBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" Margin="15, 0, 0, 0" ItemsSource="{Binding Path=SpeedEntries}"
+          DisplayMemberPath="TypeName"
+          SelectedValuePath="TypeName" Style="{DynamicResource ComboBoxStyle}" />
+
+        <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Content="Joint Angle" Style="{DynamicResource LabelStyle}"/>
+        <Label Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Left" Content="Direct Move" Style="{DynamicResource LabelStyle}"/>
+
+        <CheckBox Grid.Row="5" Grid.Column="0" Name="chb_j7" HorizontalAlignment="Center" VerticalContentAlignment="Center" Checked="chb_j7_Checked" />
+        <Label Grid.Row="5" Grid.Column="1" Content="J7" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+        <Label Grid.Row="5" Grid.Column="2" Content="{Binding ActPos_J7}" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+        <Label Grid.Row="5" Grid.Column="3" Content="deg" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+        <TextBox Grid.Row="5" Grid.Column="5" Text="{Binding Pos_J7}" Grid.ColumnSpan="2" Style="{DynamicResource TextBoxStyle}" />
+        <Label Grid.Row="5" Grid.Column="8" Content="deg" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+
+        <CheckBox Grid.Row="6" Grid.Column="0" Name="chb_j8" HorizontalAlignment="Center" VerticalContentAlignment="Center" Checked="chb_j8_Checked" />
+        <Label Grid.Row="6" Grid.Column="1" Content="J8" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+        <Label Grid.Row="6" Grid.Column="2" Content="{Binding ActPos_J8}" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+        <Label Grid.Row="6" Grid.Column="3" Content="deg" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+        <TextBox Grid.Row="6" Grid.Column="5" Text="{Binding Pos_J8}" Grid.ColumnSpan="2" Style="{DynamicResource TextBoxStyle}" />
+        <Label Grid.Row="6" Grid.Column="8" Content="deg" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+
+
     </Grid>
 </UserControl>
