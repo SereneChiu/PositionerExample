@@ -30,6 +30,8 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="36"/>
             <RowDefinition Height="36"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="36"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -79,6 +81,11 @@
         <TextBox Grid.Row="6" Grid.Column="5" Text="{Binding Pos_J8}" Grid.ColumnSpan="2" Style="{DynamicResource TextBoxStyle}" />
         <Label Grid.Row="6" Grid.Column="8" Content="deg" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
 
+        <Button Grid.Row="7" Grid.Column="0" Content="{Binding BtnLb_Jog_N}" Width="120" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}"/>
+        <Button Grid.Row="7" Grid.Column="2" Content="{Binding BtnLb_Jog_P}" Width="120" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}"/>
+        <Button Grid.Row="7" Grid.Column="4" Content="{Binding BtnLb_Jog_Start}" Width="120" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}"/>
+        <Button Grid.Row="7" Grid.Column="6" Content="{Binding BtnLb_Jog_Stop}" Width="120" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}"/>
 
+        <Label Grid.Row="8" Grid.Column="4" Content="TMcraft Toolbar Example" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle}" Grid.ColumnSpan="4"/>
     </Grid>
 </UserControl>

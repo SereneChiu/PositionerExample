@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace PositionerExample_ToolbarLib.Model
@@ -20,6 +21,12 @@ namespace PositionerExample_ToolbarLib.Model
 
         private double _act_pos_j7 = 0.0;
         private double _act_pos_j8 = 0.0;
+
+        public string BtnLb_Jog_N { get => "Jog (-)"; }
+        public string BtnLb_Jog_P { get => "Jog (+)"; }
+        public string BtnLb_Jog_Start { get => "Start"; }
+        public string BtnLb_Jog_Stop { get => "Stop"; }
+
 
         public string Pos_J8
         {
@@ -75,12 +82,23 @@ namespace PositionerExample_ToolbarLib.Model
           , new ComboboxType("15 %")
         };
 
+        public ICommand ButtonClickCommand
+        {
+            get;
+            private set;
+        }
+
         public PositionerModel()
         {
+            ButtonClickCommand = new RelayCommand(ClickedMethod);
             _distanceEntries = new CollectionView(mDisEntries);
             _speedEntries = new CollectionView(mSpeedEntries);
         }
 
+
+        private void ClickedMethod(object obj)
+        {
+        }
 
 
         public CollectionView DistanceEntries

@@ -37,17 +37,17 @@ namespace PositionerExample_ToolbarLib.ViewModel
             RemoveTabCommand = new RelayCommand(RemoveTab, CanRemoveTab);
         }
 
-        private void AddTab()
+        private void AddTab(object param)
         {
             _tabManager.AddTab();
         }
 
-        private bool CanRemoveTab()
+        private bool CanRemoveTab(object param)
         {
             return SelectedTab != null;
         }
 
-        private void RemoveTab()
+        private void RemoveTab(object param)
         {
             _tabManager.RemoveTab(SelectedTab);
         }
