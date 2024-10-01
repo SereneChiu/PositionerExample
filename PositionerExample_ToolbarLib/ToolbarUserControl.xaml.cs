@@ -1,3 +1,7 @@
+using PositionerExample_ToolbarLib.Control;
+using PositionerExample_ToolbarLib.Model;
+using PositionerExample_ToolbarLib.View;
+using PositionerExample_ToolbarLib.ViewModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,16 +22,19 @@ namespace PositionerExample_ToolbarLib
     public partial class ToolbarUserControl : UserControl, ITMcraftToolbarEntry
     {
         private TMcraftToolbarAPI mTMcraftToolbarAPI = null;
+        private ToolbarViewModel mToolbarViewModel = new ToolbarViewModel();
 
         public ToolbarUserControl()
         {
             InitializeComponent();
         }
 
+
         public void InitializeToolbar(TMcraftToolbarAPI Api)
         {
             mTMcraftToolbarAPI = Api;
-            //_axis_adapter = mTMcraftToolbarAPI.AuxiliaryAxesProvider;
+            PositionerController.AxisAdapter = mTMcraftToolbarAPI.AuxiliaryAxesProvider;
+            PositionerController.JogAdapter = mTMcraftToolbarAPI.RobotJogProvider;
         }
 
     }

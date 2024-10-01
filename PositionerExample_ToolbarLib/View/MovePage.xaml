@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PositionerExample_ToolbarLib.View"
-             xmlns:model="clr-namespace:PositionerExample_ToolbarLib.Model"
-             xmlns:control="clr-namespace:PositionerExample_ToolbarLib.Control"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="500">
     <UserControl.Resources>
@@ -19,9 +16,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <model:PositionerModel/>
-    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="36"/>
@@ -52,8 +46,8 @@
         <Button Grid.Row="0" Grid.Column="6" Content="Fault Reset" Width="120" Height="30" HorizontalAlignment="Left" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}"/>
 
         <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Content="Move Type:" Style="{DynamicResource LabelStyle}"/>
-        <RadioButton Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Name="rad_sync" Margin="15, 0, 0, 0" Content="Synchronous" GroupName="rad_move_type" FontSize="20" FontFamily="Noto Sans" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Center" Click="rad_sync_Click"/>
-        <RadioButton Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Name="rad_single" Content="Single" GroupName="rad_move_type" FontSize="20" FontFamily="Noto Sans" IsChecked="False" HorizontalAlignment="Left" VerticalAlignment="Center" Click="rad_sync_Click"/>
+        <RadioButton Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Name="rad_sync" IsChecked="{Binding Enable_Sync}" Margin="15, 0, 0, 0" Content="Synchronous" GroupName="rad_move_type" FontSize="20" FontFamily="Noto Sans" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <RadioButton Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Name="rad_single" Content="Single" GroupName="rad_move_type" FontSize="20" FontFamily="Noto Sans" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="True" />
 
         <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Content="Jog Distance:" Style="{DynamicResource LabelStyle}"/>
         <ComboBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" Margin="15, 0, 0, 0" ItemsSource="{Binding Path=DistanceEntries}"
@@ -68,24 +62,24 @@
         <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Content="Joint Angle" Style="{DynamicResource LabelStyle}"/>
         <Label Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Left" Content="Direct Move" Style="{DynamicResource LabelStyle}"/>
 
-        <CheckBox Grid.Row="5" Grid.Column="0" Name="chb_j7" HorizontalAlignment="Center" VerticalContentAlignment="Center" Checked="chb_j7_Checked" />
+        <CheckBox Grid.Row="5" Grid.Column="0" Name="chb_j7" IsChecked="{Binding Check_J7}"  HorizontalAlignment="Center" VerticalContentAlignment="Center" />
         <Label Grid.Row="5" Grid.Column="1" Content="J7" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
         <Label Grid.Row="5" Grid.Column="2" Content="{Binding ActPos_J7}" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
         <Label Grid.Row="5" Grid.Column="3" Content="deg" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
         <TextBox Grid.Row="5" Grid.Column="5" Text="{Binding Pos_J7}" Grid.ColumnSpan="2" Style="{DynamicResource TextBoxStyle}" />
         <Label Grid.Row="5" Grid.Column="8" Content="deg" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
 
-        <CheckBox Grid.Row="6" Grid.Column="0" Name="chb_j8" HorizontalAlignment="Center" VerticalContentAlignment="Center" Checked="chb_j8_Checked" />
+        <CheckBox Grid.Row="6" Grid.Column="0" Name="chb_j8" IsChecked="{Binding Check_J8}" HorizontalAlignment="Center" VerticalContentAlignment="Center"  />
         <Label Grid.Row="6" Grid.Column="1" Content="J8" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
         <Label Grid.Row="6" Grid.Column="2" Content="{Binding ActPos_J8}" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
         <Label Grid.Row="6" Grid.Column="3" Content="deg" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
         <TextBox Grid.Row="6" Grid.Column="5" Text="{Binding Pos_J8}" Grid.ColumnSpan="2" Style="{DynamicResource TextBoxStyle}" />
         <Label Grid.Row="6" Grid.Column="8" Content="deg" HorizontalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
 
-        <Button Grid.Row="7" Grid.Column="0" Content="{Binding BtnLb_Jog_N}" Width="120" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}" CommandParameter="{Binding BtnLb_Jog_N}"/>
-        <Button Grid.Row="7" Grid.Column="2" Content="{Binding BtnLb_Jog_P}" Width="120" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}" CommandParameter="{Binding BtnLb_Jog_P}"/>
-        <Button Grid.Row="7" Grid.Column="4" Content="{Binding BtnLb_Jog_Start}" Width="120" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}" CommandParameter="{Binding BtnLb_Jog_Start}"/>
-        <Button Grid.Row="7" Grid.Column="6" Content="{Binding BtnLb_Jog_Stop}" Width="120" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}" CommandParameter="{Binding BtnLb_Jog_Stop}"/>
+        <Button Grid.Row="7" Grid.Column="0" Content="{Binding BtnLb_Jog_N}" Width="100" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}" CommandParameter="{Binding BtnLb_Jog_N}"/>
+        <Button Grid.Row="7" Grid.Column="2" Content="{Binding BtnLb_Jog_P}" Width="100" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}" CommandParameter="{Binding BtnLb_Jog_P}"/>
+        <Button Grid.Row="7" Grid.Column="4" Content="{Binding BtnLb_Jog_Start}" Width="100" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}" CommandParameter="{Binding BtnLb_Jog_Start}"/>
+        <Button Grid.Row="7" Grid.Column="6" Content="{Binding BtnLb_Jog_Stop}" Width="100" Height="70" HorizontalAlignment="Center" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle}" Command="{Binding ButtonClickCommand}" CommandParameter="{Binding BtnLb_Jog_Stop}"/>
 
         <Label Grid.Row="8" Grid.Column="3" Content="TMcraft Toolbar Example" HorizontalAlignment="Right" Style="{DynamicResource LabelStyle}" Grid.ColumnSpan="5"/>
     </Grid>

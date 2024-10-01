@@ -5,11 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
+using TMcraft;
 
 namespace PositionerExample_ToolbarLib.ViewModel
 {
     public class ToolbarViewModel : ViewModelBase
     {
         public UserControl MyUserControlVM { get; set; } = new ToolbarTabControl();
+
+
     }
 }

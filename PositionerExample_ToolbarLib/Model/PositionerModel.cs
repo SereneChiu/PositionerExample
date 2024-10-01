@@ -1,5 +1,4 @@
-﻿using PositionerExample_ToolbarLib.Control;
-using PositionerExample_ToolbarLib.ViewModel;
+﻿using PositionerExample_ToolbarLib.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -27,35 +26,86 @@ namespace PositionerExample_ToolbarLib.Model
         private double _act_pos_j7 = 0.0;
         private double _act_pos_j8 = 0.0;
 
+        private bool _check_j7;
+        private bool _check_j8;
+        private bool _enable_sync = false;
+
+        public event EventHandler OnExternalLibraryInteractionRequested;
+
         public string BtnLb_Jog_N { get => "Jog (-)"; }
         public string BtnLb_Jog_P { get => "Jog (+)"; }
         public string BtnLb_Jog_Start { get => "Start"; }
         public string BtnLb_Jog_Stop { get => "Stop"; }
 
-
-        public string Pos_J8
+        public bool Enable_Sync
         {
-            get => _pos_j7.ToString();
-            set => Set(ref _pos_j7, Convert.ToDouble(value), nameof(State));
+            get => _enable_sync;
+            set => Set(ref _enable_sync, value, nameof(Enable_Sync));
+        }
+
+        public bool Enable_Single { get { return !Enable_Sync; } }
+
+        public bool Check_J7
+        {
+            get => _check_j7;
+            set => Set(ref _check_j7, value, nameof(Check_J7));
+        }
+
+        public bool Check_J8
+        {
+            get => _check_j8;
+            set => Set(ref _check_j8, value, nameof(Check_J8));
         }
 
         public string Pos_J7
         {
-            get => _pos_j8.ToString();
-            set => Set(ref _pos_j8, Convert.ToDouble(value), nameof(State));
+            get => _pos_j7.ToString();
+            set => Set(ref _pos_j7, Convert.ToDouble(value), nameof(Pos_J7));
         }
 
-
-        public string ActPos_J8
+        public string Pos_J8
         {
-            get => _act_pos_j7.ToString();
-            set => Set(ref _act_pos_j7, Convert.ToDouble(value), nameof(State));
+            get => _pos_j8.ToString();
+            set => Set(ref _pos_j8, Convert.ToDouble(value), nameof(Pos_J8));
         }
+
+
+        public double Pos_J7_Double
+        {
+            get => _pos_j7;
+            set => Set(ref _pos_j7, value, nameof(Pos_J7));
+        }
+
+        public double Pos_J8_Double
+        {
+            get => _pos_j8;
+            set => Set(ref _pos_j8, value, nameof(Pos_J8));
+        }
+
 
         public string ActPos_J7
         {
+            get => _act_pos_j7.ToString();
+            set => Set(ref _act_pos_j7, Convert.ToDouble(value), nameof(ActPos_J7));
+        }
+
+        public string ActPos_J8
+        {
             get => _act_pos_j8.ToString();
-            set => Set(ref _act_pos_j8, Convert.ToDouble(value), nameof(State));
+            set => Set(ref _act_pos_j8, Convert.ToDouble(value), nameof(ActPos_J8));
+        }
+
+
+        public double ActPos_J7_Double
+        {
+            get => _act_pos_j7;
+            set => Set(ref _act_pos_j7, value, nameof(ActPos_J7));
+        }
+
+        public double ActPos_J8_Double
+        {
+            get => _act_pos_j8;
+            set => Set(ref _act_pos_j8, value, nameof(ActPos_J8));
         }
 
 
@@ -71,10 +121,10 @@ namespace PositionerExample_ToolbarLib.Model
             set => Set(ref _selectedDistance, value, nameof(SelectedDistance));
         }
 
-        public string SelectSpeed
+        public string SelectedSpeed
         {
             get => _selectedSpeed;
-            set => Set(ref _selectedSpeed, value, nameof(SelectSpeed));
+            set => Set(ref _selectedSpeed, value, nameof(SelectedSpeed));
         }
 
         private IList<ComboboxType> mDisEntries = new List<ComboboxType>()
@@ -86,7 +136,6 @@ namespace PositionerExample_ToolbarLib.Model
           , new ComboboxType("1 mm")
           , new ComboboxType("5 mm")
           , new ComboboxType("10 mm")
-          , new ComboboxType("Continuous")
         };
 
         private IList<ComboboxType> mSpeedEntries = new List<ComboboxType>()
@@ -110,7 +159,7 @@ namespace PositionerExample_ToolbarLib.Model
             ButtonClickCommand = new RelayCommand(ClickedMethod);
             _distanceEntries = new CollectionView(mDisEntries);
             _speedEntries = new CollectionView(mSpeedEntries);
-            _selectedDistance = mDisEntries[7].TypeName;
+            _selectedDistance = mDisEntries[6].TypeName;
             _selectedSpeed = mSpeedEntries[1].TypeName;
         }
 
@@ -121,6 +170,9 @@ namespace PositionerExample_ToolbarLib.Model
             {
                 return;
             }
+
+            OnExternalLibraryInteractionRequested?.Invoke(obj, EventArgs.Empty);
+
         }
 
 
@@ -150,6 +202,7 @@ namespace PositionerExample_ToolbarLib.Model
                 return new SolidColorBrush(Colors.Green);
             }
         }
+
     }
 
     public class ComboboxType

@@ -15,8 +15,6 @@ namespace PositionerExample_ToolbarLib.ViewModel
         private readonly TabManagerModel _tabManager;
 
         public ObservableCollection<TabItemModel> Tabs => _tabManager.Tabs;
-        
-
 
 
         private TabItemModel _selectedTab;
